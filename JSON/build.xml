@@ -1,0 +1,39 @@
+<project name="json" default="dist" basedir=".">
+
+	<!-- Libs -->
+	<property name="lib" location="lib"/>
+	
+	<!-- Source -->
+	<property name="src" location="src"/>
+	
+	<property name="build" location="build"/>
+
+	<target name="init">
+		<mkdir dir="${build}"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<javac
+			target="1.6"
+			source="1.6"
+			bootclasspath="/usr/lib/jvm/java-6-openjdk/jre/lib/rt.jar"
+			destdir="${build}">
+			<src path="${src}"/>
+		</javac>
+	</target>
+
+	<target name="dist" depends="compile">
+
+		<jar
+			destfile="json.jar"
+			>
+			<fileset dir="${build}" includes="**/*.class"/>
+		</jar>
+		
+	</target>
+
+	<target name="clean">
+		<delete dir="${build}"/>
+	</target>
+
+</project>

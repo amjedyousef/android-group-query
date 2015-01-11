@@ -1,0 +1,54 @@
+<project name="querytools" default="dist" basedir=".">
+
+	<!-- Libs -->
+	<property name="lib" location="lib"/>
+	
+	<!-- Source -->
+	<property name="src" location="src"/>
+	
+	<!-- Build dir -->
+	<property name="build" location="build"/>
+
+	<!-- Target jar -->
+	<property name="targetjar" location="querytools.jar"/>
+
+	<target name="init">
+		<mkdir dir="${build}"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<javac
+			target="1.6"
+			source="1.6"
+			bootclasspath="/usr/lib/jvm/java-6-openjdk/jre/lib/rt.jar"
+			destdir="${build}">
+			<src path="${src}"/>
+			<classpath>
+				<fileset dir="${lib}" includes="**.jar"/>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="dist" depends="compile">
+
+		<jar
+			destfile="${targetjar}"
+			>
+			<manifest>
+				<attribute
+					name="Main-Class"
+					value="org.tudelft.querytools.Main"
+					/>
+			</manifest>
+			<fileset dir="${build}" includes="**/*.class"/>
+			<zipgroupfileset dir="${lib}" includes="**/*.jar" />
+		</jar>
+		
+	</target>
+
+	<target name="clean">
+		<delete dir="${build}"/>
+		<delete file="${targetjar}"/>
+	</target>
+
+</project>
