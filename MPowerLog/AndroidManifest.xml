@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.tudelft.mpower"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="17" />
+
+    <!-- File IO -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
+    <!-- Vibrator permissions, used for hardware sync -->
+	<uses-permission android:name="android.permission.VIBRATE" />
+	
+	<!-- Location permissions -->
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	
+	<!-- Battery statistics -->
+	<uses-permission android:name="android.permission.BATTERY_STATS" />
+	
+    <application
+        android:name="org.tudelft.neat.MPowerApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:name="org.tudelft.neat.MPowerActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="org.tudelft.neat.MPowerService"/>
+        <receiver android:name="org.tudelft.neat.AlarmReceiver"/>
+        
+    </application>
+	
+</manifest>

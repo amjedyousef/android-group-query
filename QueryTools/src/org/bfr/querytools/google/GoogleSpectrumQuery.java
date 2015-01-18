@@ -45,9 +45,9 @@ public class GoogleSpectrumQuery
 {
 
 	// API key. 
-	private static String apiKey1 = "AIzaSyDivuCJrME_Z6KNI_OUVfatuA2vn9A0UHo";
-	private static String apiKey2 = "AIzaSyAl9rewC1BA-FQyu3iN5xb06_7d9eiiArU";
-	private static String apiKey3 = "AIzaSyCtTWgg9Bsb3oUblpRFEYuV34nXUoKSF1M";
+	private static String apiKey1 = "AIzaSyBW2b0HgPnv4922F9b6KtH7P9CrPU2H4GU";
+	private static String apiKey2 = "AIzaSyCMEduOKdv_VZlNBQdzTXKzV_lKKMCJkEc";
+	private static String apiKey3 = "AIzaSyBW2b0HgPnv4922F9b6KtH7P9CrPU2H4GU";
 
 	private static int methodCallCounter = 0;
 	private static int querySize = 32;
@@ -125,7 +125,7 @@ public class GoogleSpectrumQuery
 		// create a JSON array to send more than one json objects
 		methodCallCounter++;
 		if (methodCallCounter * querySize < 1000){
-			
+			//do nothing
 		}else if(methodCallCounter * querySize < 2000){
 			apiKey1 = apiKey2;
 		}else{

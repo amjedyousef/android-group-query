@@ -1,0 +1,113 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+	        android:id="@+id/startButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:onClick="onStartButton"
+            android:text="Start" />
+
+        <Button
+	        android:id="@+id/stopButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:onClick="onStopButton"
+            android:text="Stop" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kernel Events"
+        />
+    
+    <ToggleButton
+        android:id="@+id/kernelEventToggle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onKernelEventToggle"
+        android:textOff="Kernel Logging Off"
+        android:textOn="Kernel Logging On" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LogCat"
+        />
+    
+    <ToggleButton
+        android:id="@+id/logCatToggle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onLogCatToggle"
+        android:textOff="LogCat Logging Off"
+        android:textOn="LogCat Logging On" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <ToggleButton
+	        android:id="@+id/logCatMainToggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:onClick="onMainToggle"
+            android:textOff="Main"
+            android:textOn="Main" />
+
+        <ToggleButton
+	        android:id="@+id/logCatSystemToggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:onClick="onSystemToggle"
+            android:textOff="System"
+            android:textOn="System" />
+
+        <ToggleButton
+	        android:id="@+id/logCatRadioToggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:onClick="onRadioToggle"
+            android:textOff="Radio"
+            android:textOn="Radio" />
+
+        <ToggleButton
+	        android:id="@+id/logCatEventsToggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:onClick="onEventsToggle"
+            android:textOff="Events"
+            android:textOn="Events" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Synchronization"
+        />
+    
+    <ToggleButton
+        android:id="@+id/vibratorSyncToggle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onVibratorSyncToggle"
+        android:textOff="Hardware Synchronization Off"
+        android:textOn="Hardware Synchronization On" />
+
+</LinearLayout>
