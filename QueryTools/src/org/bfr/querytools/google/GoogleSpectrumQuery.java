@@ -1,18 +1,3 @@
-/**
-	Copyright 2014 [BFR]
-	
-	Licensed under the Apache License, Version 2.0 (the "License");
-	you may not use this file except in compliance with the License.
-	You may obtain a copy of the License at
-	
-	    http://www.apache.org/licenses/LICENSE-2.0
-	
-	Unless required by applicable law or agreed to in writing, software
-	distributed under the License is distributed on an "AS IS" BASIS,
-	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	See the License for the specific language governing permissions and
-	limitations under the License.
-**/
 package org.bfr.querytools.google;
 
 import java.io.BufferedReader;
@@ -32,25 +17,32 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * 
- * Google <a href="https://www.google.com/get/spectrumdatabase/">spectrum database</a> client.  
- * <p>
- * This is an implementation of the <a href="https://developers.google.com/spectrum/paws/gettingstarted">Spectrum Database API</a> 
- * which uses JSON as a transport protocol. Note that the API key is hard coded, which makes this non-production code. Note that each
- * key has a daily query limit, and the service will start returning error messages after this limit has been reached.
- * 
- */
 public class GoogleSpectrumQuery
 {
-
 	// API key. 
-	private static String apiKey1 = "AIzaSyBW2b0HgPnv4922F9b6KtH7P9CrPU2H4GU";
-	private static String apiKey2 = "AIzaSyCMEduOKdv_VZlNBQdzTXKzV_lKKMCJkEc";
-	private static String apiKey3 = "AIzaSyBW2b0HgPnv4922F9b6KtH7P9CrPU2H4GU";
+	private static String apiKey1 = "AIzaSyCX5QLIbuWlyRE32uRe9VkdmDjn7T-Won8";
+	private static String apiKey2 = "";
+	private static String apiKey3 = "AIzaSyBORRyv4vfrKJ6D73P0qJZjp-dgYlD9If4";
+	private static String apiKey4 = "AIzaSyBw4Pt8NYYIwRo-9GHsMWbqzlWVLO90_5c";
+	private static String apiKey5 = "AIzaSyDniefmKJNv42I6w7kEkDQc2QLkLs-omQ0";
+	private static String apiKey6 = "AIzaSyCDriOhv2l_pXTMkTLab3oJk0zVstjY-Hw";
+	private static String apiKey7 = "AIzaSyDdYFocs4Jdvp0DhfbPFNsvZeviNC9x6eo";
+	private static String apiKey8 = "AIzaSyDESRe8rnVr4r-be1higwGmfAgE8nOS1CU";
+	
+	private static String apiKey9 = "AIzaSyCtRwDLeP8iUl-f4k8xeUPpUt6jYkDBir4";
+	private static String apiKey10 = "AIzaSyB4sYk0TxrMElO2X4KjkhwjZBM2Xk49kuk";
+	private static String apiKey11 = "AIzaSyCX5QLIbuWlyRE32uRe9VkdmDjn7T-Won8";
+	private static String apiKey12 = "AIzaSyA9uNfnvSK1JpiYGd3VcCHM555U1ul7lxc";
+	private static String apiKey13 = "AIzaSyA9uNfnvSK1JpiYGd3VcCHM555U1ul7lxc";
+	private static String apiKey14 = "AIzaSyCAdizltwoqC3uDKpNH799inmGJHWrJJgM";
+	private static String apiKey15 = "AIzaSyBFdDReJgCwrWZDuRdBeXITdYLkKLgaIn8";
+
 
 	private static int methodCallCounter = 0;
-	private static int querySize = 32;
+//	private static int querySize = 45;//,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,38,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75};
+	private static int querySize[] ={1,3,5,7,9,11,13,15,17,19};
+	private static int querySizeController = 0;
+	private static int k = 0;
 	
 	// Constants
 	private final static String fccId = "TEST";
@@ -95,49 +87,62 @@ public class GoogleSpectrumQuery
 	private static JSONObject createOwner() throws JSONException
 	{
 		JSONObject object = new JSONObject();
-		
 		object.put("owner", new JSONObject());
 		
 		return object;
 	}
-	
-/*	private static JSONObject createCapabilities(long ... hz) throws JSONException
-	{
-		JSONObject object = new JSONObject();
 		
-		JSONObject[] ranges = new JSONObject[hz.length/2];
-		for (int i=0; i<hz.length/2; i++)
-		{
-			ranges[i] = new JSONObject();
-			ranges[i].put("startHz", hz[i*2]);
-			ranges[i].put("stopHz", hz[i*2+1]);
-		}
-		
-		object.put("frequencyRanges", ranges);
-		
-		return object;
-	}
-*/	
 //	private static JSONObject createQuery(double latitude, double longitude) throws JSONException
 	private static JSONArray createQuery(double latitude, double longitude) throws JSONException
 	{
 		//Amjad 
 		// create a JSON array to send more than one json objects
-		methodCallCounter++;
-		if (methodCallCounter * querySize < 1000){
+		querySizeController++;
+		
+		if(querySizeController % 10 == 0){
+			k++;
+		}
+		methodCallCounter+=querySize[k];
+		if (methodCallCounter  < 1000){
 			//do nothing
-		}else if(methodCallCounter * querySize < 2000){
+		}
+		else if(methodCallCounter < 2000){
 			apiKey1 = apiKey2;
-		}else{
+		}else if(methodCallCounter < 3000){
 			apiKey1 = apiKey3;
+		}else if(methodCallCounter < 4000){
+			apiKey1 = apiKey4;
+		}else if(methodCallCounter < 5000){
+			apiKey1 = apiKey5;
+		}else if(methodCallCounter < 6000){
+			apiKey1 = apiKey6;
+		}else if(methodCallCounter < 7000){
+			apiKey1 = apiKey7;
+		}else if(methodCallCounter < 8000){
+			apiKey1 = apiKey8;
+		}else if(methodCallCounter < 9000){
+			apiKey1 = apiKey9;
+		}else if(methodCallCounter < 10000){
+			apiKey1 = apiKey10;
+		}else if(methodCallCounter < 11000){
+			apiKey1 = apiKey11;
+		}else if(methodCallCounter < 12000){
+			apiKey1 = apiKey12;
+		}else if(methodCallCounter < 13000){
+			apiKey1 = apiKey13;
+		}else if(methodCallCounter < 14000){
+			apiKey1 = apiKey14;
+		}else{
+			apiKey1 = apiKey15;
 		}
 		
 		JSONArray arr = new JSONArray();
-		
-		//Object One
-		
-		
-		for(int i = 0 ; i < querySize ; i++){
+	
+		for(int i = 0 ; i < querySize[k] ; i++){
+			
+			// 0.02 * i = a step forward each iteration 
+			double lat =latitude+0.0009*i;
+			double lng = longitude+0.0009*i;
 			
 			JSONObject object = new JSONObject();
 			object.put("jsonrpc", "2.0");
@@ -148,53 +153,20 @@ public class GoogleSpectrumQuery
 			params.put("type", "AVAIL_SPECTRUM_REQ");
 			params.put("version", "1.0");
 			params.put("deviceDesc", createFromStrings("serialNumber", "your_serial_number", "fccId", fccId, "fccTvbdDeviceType", mode));
-			params.put("location", createPoint(latitude+0.02, longitude+0.02));
+			params.put("location", createPoint(lat, lng));
 			params.put("antenna", createAntenna());
 			params.put("owner", createOwner());
-	//		params.put("capabilities", createCapabilities(800000000, 850000000, 900000000, 950000000));		
 			params.put("key", apiKey1);
 			object.put("params", params);
 			
 			arr.put(object);
+			object = null;
 		}
-		
-	//  Amjad
-	//	return object;
 	    return arr	;
 	}
-	
-//	public static void googleQuery() throws ClientProtocolException, IOException
-//	{
-//		Logger.log("query-start");
-//		
-//		HttpClient client = new DefaultHttpClient();
-//		HttpGet request = new HttpGet("https://www.google.com");
-//		HttpConnectionParams.setConnectionTimeout(client.getParams(), 10*1000);
-//		HttpConnectionParams.setSoTimeout(client.getParams(), 10*1000);
-//		
-//		Logger.log("query-execute");
-//		HttpResponse response = client.execute(request);
-//
-//		// Get the response
-//		InputStream input = response.getEntity().getContent();
-//		byte[] block = new byte[1024 * 8];
-//		
-//		boolean first = true;
-//		while (input.read(block)!=-1)
-//		{
-//			if (first)
-//			{
-//				Logger.log("query-first-data");
-//				first = false;
-//			}
-//		}
-//		
-//		Logger.log("query-done");
-//	}
-	
+
 	public static void query(double latitude, double longitude)
 	{
-		
 		HttpClient client = new DefaultHttpClient();
 		HttpPost request = new HttpPost("https://www.googleapis.com/rpc");
 		HttpConnectionParams.setConnectionTimeout(client.getParams(), 10*1000);
@@ -204,8 +176,8 @@ public class GoogleSpectrumQuery
 		
 		try
 		{
+			Logger.log(String.format("google-query-start"));
 			request.setEntity(new StringEntity(createQuery(latitude, longitude).toString(), HTTP.UTF_8));
-
 			
 			Logger.log(String.format("google-query-execute %.4f %.4f", latitude, longitude));
 			
@@ -223,7 +195,8 @@ public class GoogleSpectrumQuery
 				}
 				Logger.log(line);
 			}
-
+			Logger.log("google-query-done");
+			
 		} catch (UnsupportedEncodingException e)
 		{
 			Logger.log("google-query-error Unsupported Encoding: " + e.getMessage());
@@ -234,10 +207,6 @@ public class GoogleSpectrumQuery
 		{
 			Logger.log("google-query-error i/o exception: " + e.getMessage());
 		}
-
-		
-		Logger.log("google-query-done");
-		
 	}
 	
 }
